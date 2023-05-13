@@ -1,4 +1,4 @@
-package gg.techquest.database.callback;
+package gg.techquest.util.database.callback;
 
 import org.bson.Document;
 

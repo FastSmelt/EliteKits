@@ -1,0 +1,6 @@
+name: EliteKits
+main: gg.techquest.EliteKits
+version: 1.0
+commands:
+  profile:
+  debug:

@@ -1,4 +1,4 @@
-package gg.techquest.database;
+package gg.techquest.util.database;
 
 import java.util.HashMap;
 import java.util.Map;

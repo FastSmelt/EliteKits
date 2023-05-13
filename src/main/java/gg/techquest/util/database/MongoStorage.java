@@ -1,9 +1,9 @@
-package gg.techquest.database;
+package gg.techquest.util.database;
 
 import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import gg.techquest.database.callback.DocumentCallback;
+import gg.techquest.util.database.callback.DocumentCallback;
 import org.bson.Document;
 
 import java.util.Map;

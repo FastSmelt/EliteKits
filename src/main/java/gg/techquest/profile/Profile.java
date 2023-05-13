@@ -1,6 +1,7 @@
 package gg.techquest.profile;
 
-import gg.techquest.database.MongoRequest;
+import gg.techquest.profile.state.PlayerState;
+import gg.techquest.util.database.MongoRequest;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,8 @@ public class Profile extends PlayerProfile {
     private UUID uuid;
     private String name;
 
+    private PlayerState playerState;
+
     private int kills, deaths, killstreak;
 
     public Profile(String name, UUID uuid) {
@@ -22,12 +25,14 @@ public class Profile extends PlayerProfile {
         this.name = name;
         this.uuid = uuid;
 
+        playerState = PlayerState.LOBBY;
+
         load();
     }
 
     @Override
     public MongoRequest serialize() {
-        MongoRequest request = MongoRequest.newRequest("kitpvp", uuid)
+        MongoRequest request = MongoRequest.newRequest("players", uuid)
                 .put("deaths", getDeaths())
                 .put("kills", getKills())
                 .put("kill_streak", getKillstreak())
@@ -38,8 +43,8 @@ public class Profile extends PlayerProfile {
 
     @Override
     public void deserialize(Document document) {
-        setDeaths(document.getInteger("kills", 0));
+        setKills(document.getInteger("kills", 0));
         setDeaths(document.getInteger("deaths", 0));
-        setDeaths(document.getInteger("killstreak", 0));
+        setKillstreak(document.getInteger("kill_streak", 0));
     }
 }

@@ -1,7 +1,7 @@
 package gg.techquest.profile;
 
 import gg.techquest.EliteKits;
-import gg.techquest.database.MongoRequest;
+import gg.techquest.util.database.MongoRequest;
 
 import gg.techquest.util.TaskUtil;
 
