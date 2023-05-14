@@ -27,6 +27,8 @@ public class DebugCommand implements CommandExecutor {
 
         profile.setKills(100);
 
+        profile.setEconomy(100);
+
         return false;
     }
 }

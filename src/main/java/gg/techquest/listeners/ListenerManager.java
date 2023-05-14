@@ -4,7 +4,6 @@ import gg.techquest.EliteKits;
 import gg.techquest.listeners.player.PlayerStateListener;
 import gg.techquest.profile.listener.ProfileListener;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
 public class ListenerManager {
@@ -12,9 +11,9 @@ public class ListenerManager {
     private EliteKits plugin;
 
     public ListenerManager(EliteKits plugin) {
-        plugin = plugin;
+        this.plugin = plugin;
 
-        PluginManager pluginManager = Bukkit.getPluginManager();
+        PluginManager pluginManager = plugin.getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerStateListener(plugin), plugin);
         pluginManager.registerEvents(new ProfileListener(plugin), plugin);
     }

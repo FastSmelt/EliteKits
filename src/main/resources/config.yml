@@ -1,10 +1,17 @@
 WELCOME.MESSAGE:
     - "poo"
 
+SELECTOR.NAME: "asdasd"
+
+KIT.SELECTOR.LORE:
+    - "as"
+    - "asd"
+
 SCOREBOARD.TITLE: "&dTest"
 LOBBY.SCOREBOARD.LINES:
     - "---"
     - "%player%"
     - "%kills%"
+    - "%deaths%"
     - "%economy%"
     - "---"

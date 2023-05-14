@@ -5,15 +5,13 @@ import gg.techquest.profile.Profile;
 
 import gg.techquest.profile.state.PlayerState;
 import gg.techquest.util.CC;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,8 +35,8 @@ public class ProfileListener implements Listener {
 
     @EventHandler
     public void onLogin(PlayerLoginEvent event) {
-        Player player = event.getPlayer();
-        Profile profile = plugin.getProfileManager().getProfile(player);
+        final Player player = event.getPlayer();
+        final Profile profile = plugin.getProfileManager().getProfile(player);
 
         if (profile == null) {
             event.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor.RED + "Your data failed to load for KitPvP. Try logging in again.");
@@ -49,26 +47,38 @@ public class ProfileListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        Profile profile = plugin.getProfileManager().getProfile(player);
+        final Player player = event.getPlayer();
+        final Profile profile = plugin.getProfileManager().getProfile(player);
 
         plugin.getFileSetup().getStringList("WELCOME.MESSAGE").stream().map(CC::translate).forEach(player::sendMessage);
 
+        plugin.getRegionManager().acquireSpawnProtection(player);
+
         plugin.getItemManager().createLobbyloadout(player);
         profile.setPlayerState(PlayerState.LOBBY);
+        player.teleport(Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
     }
 
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onQuit(PlayerQuitEvent event) {
-        Player player = event.getPlayer();
-        Profile profile = plugin.getProfileManager().getProfile(player);
+        final Player player = event.getPlayer();
+        final Profile profile = plugin.getProfileManager().getProfile(player);
 
-        if (profile == null) {
-            return;
-        }
+        if (profile == null) return;
 
         profile.save(false);
         plugin.getProfileManager().removeProfile(player.getUniqueId());
+    }
+
+    @EventHandler
+    public void onPlayerRespawn(PlayerRespawnEvent event) {
+        final Player player = event.getPlayer();
+        final Profile profile = plugin.getProfileManager().getProfile(player);
+
+        profile.setPlayerState(PlayerState.LOBBY);
+        plugin.getRegionManager().acquireSpawnProtection(player);
+
+        player.teleport(Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
     }
 }

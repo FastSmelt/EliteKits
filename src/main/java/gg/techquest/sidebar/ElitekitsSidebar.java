@@ -31,23 +31,19 @@ public class ElitekitsSidebar implements AssembleAdapter {
         List<String> lines = plugin.getFileSetup().getStringList("LOBBY.SCOREBOARD.LINES");
         List<String> translatedLines = new ArrayList<>();
 
+        List<String> linesPvP = plugin.getFileSetup().getStringList("LOBBY.SCOREBOARD.LINES");
+        List<String> translatedLinesPvP = new ArrayList<>();
+
         Profile profile = plugin.getProfileManager().getProfile(player);
 
-        switch (profile.getPlayerState()) {
-            case LOBBY:
-                for (String line : lines) {
-                    String translatedLine = CC.translate(line
-                            .replace("%player%", player.getName())
-                            .replace("%kills%", String.valueOf(profile.getKills()))
-                            .replace("%deaths%", String.valueOf(profile.getDeaths()))
-                            .replace("%economy%", String.valueOf(profile.getEconomy())));
+        for (String line : lines) {
+            String translatedLine = CC.translate(line
+                    .replace("%player%", player.getName())
+                    .replace("%kills%", String.valueOf(profile.getKills()))
+                    .replace("%deaths%", String.valueOf(profile.getDeaths()))
+                    .replace("%economy%", String.valueOf(profile.getEconomy())));
 
-                    translatedLines.add(translatedLine);
-                }
-                break;
-            case PVP:
-
-                break;
+            translatedLines.add(translatedLine);
         }
         return translatedLines;
     }

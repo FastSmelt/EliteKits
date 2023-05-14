@@ -1,6 +1,7 @@
 package gg.techquest.profile;
 
 import gg.techquest.profile.state.PlayerState;
+import gg.techquest.region.tasks.VulnerableTask;
 import gg.techquest.util.database.MongoRequest;
 
 import lombok.Getter;
@@ -17,6 +18,7 @@ public class Profile extends PlayerProfile {
     private String name;
 
     private PlayerState playerState;
+    private VulnerableTask vulnerableTask;
 
     private int kills, deaths, killstreak;
 
