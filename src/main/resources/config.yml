@@ -1,0 +1,10 @@
+WELCOME.MESSAGE:
+    - "poo"
+
+SCOREBOARD.TITLE: "&dTest"
+LOBBY.SCOREBOARD.LINES:
+    - "---"
+    - "%player%"
+    - "%kills%"
+    - "%economy%"
+    - "---"

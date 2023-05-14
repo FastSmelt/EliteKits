@@ -20,6 +20,8 @@ public class Profile extends PlayerProfile {
 
     private int kills, deaths, killstreak;
 
+    private int economy;
+
     public Profile(String name, UUID uuid) {
         super(uuid, "players");
         this.name = name;
@@ -36,6 +38,7 @@ public class Profile extends PlayerProfile {
                 .put("deaths", getDeaths())
                 .put("kills", getKills())
                 .put("kill_streak", getKillstreak())
+                .put("economy", getEconomy())
                 .put("name", name);
 
         return request;
@@ -46,5 +49,6 @@ public class Profile extends PlayerProfile {
         setKills(document.getInteger("kills", 0));
         setDeaths(document.getInteger("deaths", 0));
         setKillstreak(document.getInteger("kill_streak", 0));
+        setEconomy(document.getInteger("economy", 0));
     }
 }

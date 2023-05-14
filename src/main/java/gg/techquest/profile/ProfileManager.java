@@ -1,4 +1,4 @@
-package gg.techquest.profile.manager;
+package gg.techquest.profile;
 
 import gg.techquest.profile.Profile;
 

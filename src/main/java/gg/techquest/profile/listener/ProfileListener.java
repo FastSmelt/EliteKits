@@ -52,12 +52,9 @@ public class ProfileListener implements Listener {
         Player player = event.getPlayer();
         Profile profile = plugin.getProfileManager().getProfile(player);
 
-        player.sendMessage(new String[]{
-                "",
-                CC.translate("&bWelcome test message"),
-                ""
-        });
+        plugin.getFileSetup().getStringList("WELCOME.MESSAGE").stream().map(CC::translate).forEach(player::sendMessage);
 
+        plugin.getItemManager().createLobbyloadout(player);
         profile.setPlayerState(PlayerState.LOBBY);
     }
 
