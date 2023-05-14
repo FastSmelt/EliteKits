@@ -58,6 +58,9 @@ public class PlayerStateListener implements Listener {
             case LOBBY:
                 e.setCancelled(true);
                 break;
+            case PVP:
+                e.setCancelled(false);
+                break;
         }
     }
 }

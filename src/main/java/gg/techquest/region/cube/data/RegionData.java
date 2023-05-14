@@ -1,4 +1,4 @@
-package gg.techquest.region.data;
+package gg.techquest.region.cube.data;
 
 import lombok.Getter;
 import lombok.Setter;

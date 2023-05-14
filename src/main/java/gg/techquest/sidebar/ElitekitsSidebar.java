@@ -31,9 +31,6 @@ public class ElitekitsSidebar implements AssembleAdapter {
         List<String> lines = plugin.getFileSetup().getStringList("LOBBY.SCOREBOARD.LINES");
         List<String> translatedLines = new ArrayList<>();
 
-        List<String> linesPvP = plugin.getFileSetup().getStringList("LOBBY.SCOREBOARD.LINES");
-        List<String> translatedLinesPvP = new ArrayList<>();
-
         Profile profile = plugin.getProfileManager().getProfile(player);
 
         for (String line : lines) {

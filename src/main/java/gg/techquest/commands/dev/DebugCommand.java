@@ -29,6 +29,8 @@ public class DebugCommand implements CommandExecutor {
 
         profile.setEconomy(100);
 
+        EliteKits.getInstance().getKitManager().giveKit("pvp", player);
+
         return false;
     }
 }

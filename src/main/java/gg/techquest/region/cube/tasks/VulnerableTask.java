@@ -1,10 +1,9 @@
-package gg.techquest.region.tasks;
+package gg.techquest.region.cube.tasks;
 
 import gg.techquest.profile.Profile;
 
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Wool;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;

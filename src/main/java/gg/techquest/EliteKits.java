@@ -3,6 +3,7 @@ package gg.techquest;
 import gg.techquest.commands.CommandManager;
 import gg.techquest.items.ItemManager;
 
+import gg.techquest.kit.KitManager;
 import gg.techquest.listeners.ListenerManager;
 
 import gg.techquest.profile.ProfileManager;
@@ -36,6 +37,7 @@ public class EliteKits extends JavaPlugin {
     private ItemManager itemManager;
     private ListenerManager listenerManager;
     private RegionManager regionManager;
+    private KitManager kitManager;
 
     @Getter @Setter private Cuboid spawnCuboid;
     private Location spawnLocation;
@@ -55,6 +57,7 @@ public class EliteKits extends JavaPlugin {
         this.itemManager = new ItemManager(this);
         this.listenerManager = new ListenerManager(this);
         this.regionManager = new RegionManager(this);
+        this.kitManager = new KitManager();
 
         new MenuHandler(this);
 

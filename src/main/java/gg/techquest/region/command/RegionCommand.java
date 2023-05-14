@@ -2,7 +2,7 @@ package gg.techquest.region.command;
 
 import gg.techquest.EliteKits;
 import gg.techquest.region.cube.Cuboid;
-import gg.techquest.region.data.RegionData;
+import gg.techquest.region.cube.data.RegionData;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

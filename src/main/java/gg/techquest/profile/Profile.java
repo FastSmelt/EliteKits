@@ -1,7 +1,7 @@
 package gg.techquest.profile;
 
 import gg.techquest.profile.state.PlayerState;
-import gg.techquest.region.tasks.VulnerableTask;
+import gg.techquest.region.cube.tasks.VulnerableTask;
 import gg.techquest.util.database.MongoRequest;
 
 import lombok.Getter;
