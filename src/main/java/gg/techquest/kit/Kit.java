@@ -1,5 +1,8 @@
 package gg.techquest.kit;
 
+import gg.techquest.EliteKits;
+import gg.techquest.profile.Profile;
+import gg.techquest.profile.state.PlayerState;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.entity.Player;
@@ -44,7 +47,6 @@ public abstract class Kit {
     }
 
     protected void startCooldown(Player player) {
-        // TODO: Implement this method to start the cooldown period for the kit
     }
 
     public String getName() {
@@ -66,4 +68,5 @@ public abstract class Kit {
     public Kit getPreviousKit() {
         return previousKit;
     }
+
 }

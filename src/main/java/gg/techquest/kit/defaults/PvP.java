@@ -38,12 +38,16 @@ public class PvP extends Kit {
         this.diamondSword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 
         this.soup = new ItemStack(Material.MUSHROOM_SOUP);
+
+        setPreviousKit(this);
     }
 
     @Override
     public void execute(Player player) {
         player.addPotionEffect(speedEffect);
         Inventory inventory = player.getInventory();
+
+        player.getInventory().clear();
 
         for (int i = 0; i < inventory.getSize(); i++) {
             HashMap<Integer, ItemStack> remaining = inventory.addItem(soup);
@@ -52,7 +56,6 @@ public class PvP extends Kit {
             }
         }
 
-        player.getInventory().clear(); // Clear player's inventory before adding items
         player.getInventory().setHelmet(helmet);
         player.getInventory().setChestplate(chestplate);
         player.getInventory().setLeggings(leggings);
@@ -60,6 +63,8 @@ public class PvP extends Kit {
 
         player.getInventory().setItem(0, diamondSword);
         player.getInventory().setItem(1, soup);
+
+        setPreviousKit(this);
     }
 
     public void addEffect(PotionEffect effect) {

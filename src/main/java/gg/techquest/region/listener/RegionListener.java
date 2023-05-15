@@ -4,6 +4,7 @@ import gg.techquest.EliteKits;
 import gg.techquest.profile.Profile;
 import gg.techquest.profile.state.PlayerState;
 import gg.techquest.region.cube.data.RegionData;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -24,23 +25,18 @@ public class RegionListener implements Listener {
 
     @EventHandler
     public void onClick(PlayerInteractEvent event) {
-        Action action = event.getAction();
+        final Action action = event.getAction();
 
-        if (action == Action.LEFT_CLICK_AIR || action == Action.RIGHT_CLICK_AIR || !event.hasItem() || !event.hasBlock()) {
+        if (action == Action.LEFT_CLICK_AIR || action == Action.RIGHT_CLICK_AIR || !event.hasItem() || !event.hasBlock())
             return;
-        }
 
-        ItemStack item = event.getItem();
+        final ItemStack item = event.getItem();
 
-        if (item.getType() != Material.GOLD_AXE) {
-            return;
-        }
+        if (item.getType() != Material.GOLD_AXE) return;
 
         Player player = event.getPlayer();
 
-        if (!plugin.getRegionManager().isEditingRegion(player)) {
-            return;
-        }
+        if (!plugin.getRegionManager().isEditingRegion(player)) return;
 
         RegionData data = plugin.getRegionManager().getData(player);
         Location location = event.getClickedBlock().getLocation();
@@ -72,7 +68,14 @@ public class RegionListener implements Listener {
         }
 
         if (!plugin.getSpawnCuboid().contains(to)) {
+
+            if (!plugin.getKitManager().hasKit(player)) {
+                plugin.getKitManager().giveKit("pvp", player);
+            }
+
             plugin.getRegionManager().loseSpawnProtection(player);
+
+            profile.setPlayerState(PlayerState.PVP);
         }
     }
 

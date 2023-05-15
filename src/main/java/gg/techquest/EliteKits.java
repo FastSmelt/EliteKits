@@ -57,7 +57,7 @@ public class EliteKits extends JavaPlugin {
         this.itemManager = new ItemManager(this);
         this.listenerManager = new ListenerManager(this);
         this.regionManager = new RegionManager(this);
-        this.kitManager = new KitManager();
+        this.kitManager = new KitManager(this);
 
         new MenuHandler(this);
 

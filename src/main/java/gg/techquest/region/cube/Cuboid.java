@@ -19,9 +19,8 @@ public class Cuboid implements Iterable<Block>, Cloneable, ConfigurationSerializ
     private final int x2, y2, z2;
 
     public Cuboid(Location locationA, Location locationB) {
-        if (!locationA.getWorld().equals(locationB.getWorld())) {
+        if (!locationA.getWorld().equals(locationB.getWorld()))
             throw new IllegalArgumentException("Locations must be in the same world");
-        }
 
         this.worldName = locationA.getWorld().getName();
         this.x1 = Math.min(locationA.getBlockX(), locationB.getBlockX());
@@ -98,9 +97,7 @@ public class Cuboid implements Iterable<Block>, Cloneable, ConfigurationSerializ
         Iterator<Block> blockIterator = this.iterator();
         List<Block> copy = new ArrayList<>();
 
-        while (blockIterator.hasNext()) {
-            copy.add(blockIterator.next());
-        }
+        while (blockIterator.hasNext()) copy.add(blockIterator.next());
 
         return copy;
     }
