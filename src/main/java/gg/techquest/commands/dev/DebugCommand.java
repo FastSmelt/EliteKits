@@ -1,11 +1,16 @@
 package gg.techquest.commands.dev;
 
 import gg.techquest.EliteKits;
+import gg.techquest.items.builder.ItemBuilder;
+import gg.techquest.menus.KitSelector;
 import gg.techquest.profile.Profile;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.util.List;
 
 public class DebugCommand implements CommandExecutor {
 
@@ -25,11 +30,7 @@ public class DebugCommand implements CommandExecutor {
 
         Profile profile = EliteKits.getInstance().getProfileManager().getProfile(player.getUniqueId());
 
-        profile.setKills(100);
-
-        profile.setEconomy(100);
-
-        EliteKits.getInstance().getKitManager().giveKit("pvp", player);
+        new KitSelector(player).updateMenu();
 
         return false;
     }

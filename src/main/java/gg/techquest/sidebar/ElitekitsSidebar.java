@@ -1,5 +1,6 @@
 package gg.techquest.sidebar;
 
+import com.google.common.base.Strings;
 import gg.techquest.EliteKits;
 import gg.techquest.profile.Profile;
 import gg.techquest.profile.state.PlayerState;
@@ -28,20 +29,26 @@ public class ElitekitsSidebar implements AssembleAdapter {
 
     @Override
     public List<String> getLines(Player player) {
-        List<String> lines = plugin.getFileSetup().getStringList("LOBBY.SCOREBOARD.LINES");
-        List<String> translatedLines = new ArrayList<>();
+        List<String> toReturn = new ArrayList<>();
 
         Profile profile = plugin.getProfileManager().getProfile(player);
 
-        for (String line : lines) {
-            String translatedLine = CC.translate(line
-                    .replace("%player%", player.getName())
-                    .replace("%kills%", String.valueOf(profile.getKills()))
-                    .replace("%deaths%", String.valueOf(profile.getDeaths()))
-                    .replace("%economy%", String.valueOf(profile.getEconomy())));
-
-            translatedLines.add(translatedLine);
+        switch (profile.getPlayerState()) {
+            case LOBBY:
+                toReturn.add(CC.translate("&7&m" + Strings.repeat("-", 20)));
+                toReturn.add("&fKills:&b " + profile.getKills());
+                toReturn.add("&fDeaths:&b " + profile.getDeaths());
+                toReturn.add("&fCredits:&b " + profile.getKillstreak());
+                toReturn.add("");
+                toReturn.add(CC.translate("&7tech.quest"));
+                toReturn.add(CC.translate("&7&m" + Strings.repeat("-", 20)));
+                break;
+            case PVP:
+                toReturn.add(CC.translate("&7&m" + Strings.repeat("-", 20)));
+                toReturn.add("&fKills:&b " + profile.getKills());
+                toReturn.add("&fDeaths:&b " + profile.getDeaths());
+                toReturn.add(CC.translate("&7&m" + Strings.repeat("-", 20)));
         }
-        return translatedLines;
+        return toReturn;
     }
 }

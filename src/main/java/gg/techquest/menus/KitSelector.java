@@ -1,6 +1,8 @@
-package gg.techquest.items.menus;
+package gg.techquest.menus;
 
 import gg.techquest.EliteKits;
+import gg.techquest.profile.Profile;
+import gg.techquest.profile.state.PlayerState;
 import gg.techquest.util.CC;
 
 import io.github.nosequel.menu.Menu;
@@ -18,18 +20,20 @@ public class KitSelector extends Menu {
 
     @Override
     public void tick() {
+        Player player = getPlayer();
+        Profile profile = EliteKits.getInstance().getProfileManager().getProfile(player);
+
         this.buttons[10] = new Button(new ItemStack(Material.DIAMOND_SWORD))
                 .setDisplayName(CC.translate("&bPvP"))
-                .setLore(new String[] {
-                        "",
-                        CC.translate("&7Your Gems is:&d"),
-                        ""
+                .setLore(new String[]{
+                        CC.translate("&7&m-------------------"),
+                        CC.translate("&7Basic PvP Kit"),
+                        CC.translate("&7&m-------------------")
                 })
                 .setClickAction(event -> {
                     event.setCancelled(true);
-
                     EliteKits.getInstance().getKitManager().giveKit("pvp",getPlayer());
-
+                    profile.setPlayerState(PlayerState.PVP);
                     this.updateMenu();
                 });
     }

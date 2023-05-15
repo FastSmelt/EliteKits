@@ -49,10 +49,17 @@ public class PvP extends Kit {
 
         player.getInventory().clear();
 
-        for (int i = 0; i < inventory.getSize(); i++) {
-            HashMap<Integer, ItemStack> remaining = inventory.addItem(soup);
-            if (remaining.isEmpty()) {
-                break;
+        int remainingSpace = inventory.getSize() - inventory.firstEmpty();
+
+        if (remainingSpace > 0) {
+            ItemStack soupStack = new ItemStack(Material.MUSHROOM_SOUP, remainingSpace);
+
+            HashMap<Integer, ItemStack> remaining = inventory.addItem(soupStack);
+
+            if (!remaining.isEmpty()) {
+                for (ItemStack item : remaining.values()) {
+                    player.getWorld().dropItem(player.getLocation(), item);
+                }
             }
         }
 

@@ -77,8 +77,9 @@ public class ProfileListener implements Listener {
         final Profile profile = plugin.getProfileManager().getProfile(player);
 
         profile.setPlayerState(PlayerState.LOBBY);
-        plugin.getRegionManager().acquireSpawnProtection(player);
 
+        plugin.getRegionManager().acquireSpawnProtection(player);
+        plugin.getItemManager().createLobbyloadout(player);
         player.teleport(Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
     }
 }
