@@ -1,7 +1,9 @@
 package gg.techquest.kit.defaults;
 
+import gg.techquest.EliteKits;
 import gg.techquest.items.builder.ItemBuilder;
 import gg.techquest.kit.Kit;
+import gg.techquest.profile.Profile;
 import gg.techquest.util.CC;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -50,14 +52,15 @@ public class SwitcherKit extends Kit {
         this.soup = new ItemStack(Material.MUSHROOM_SOUP);
 
         this.switcherAbility = new ItemBuilder(Material.SNOW_BALL).name(CC.translate("&bSwitcher")).amount(3).build();
-
-        setPreviousKit(this);
     }
 
     @Override
     public void execute(Player player) {
         player.addPotionEffect(speedEffect);
         Inventory inventory = player.getInventory();
+
+        Profile profile = EliteKits.getInstance().getProfileManager().getProfile(player);
+        profile.setPreviousKit(this);
 
         player.getInventory().clear();
 
@@ -83,8 +86,6 @@ public class SwitcherKit extends Kit {
         player.getInventory().setItem(0, diamondSword);
         player.getInventory().setItem(1, soup);
         player.getInventory().setItem(2, switcherAbility);
-
-        setPreviousKit(this);
     }
 
     public void addEffect(PotionEffect effect) {

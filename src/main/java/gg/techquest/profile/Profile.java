@@ -1,5 +1,7 @@
 package gg.techquest.profile;
 
+import gg.techquest.EliteKits;
+import gg.techquest.kit.Kit;
 import gg.techquest.profile.state.PlayerState;
 import gg.techquest.region.cube.tasks.VulnerableTask;
 import gg.techquest.util.database.MongoRequest;
@@ -25,6 +27,7 @@ public class Profile extends PlayerProfile {
 
     private int kills, deaths, killstreak;
 
+    private Kit previousKit;
     private int economy;
 
     public Profile(String name, UUID uuid) {
@@ -44,7 +47,9 @@ public class Profile extends PlayerProfile {
                 .put("kills", getKills())
                 .put("kill_streak", getKillstreak())
                 .put("economy", getEconomy())
-                .put("name", name);
+                .put("name", name)
+                .put("previous_kit", previousKit != null ? previousKit.getName() : null);
+
 
         return request;
     }
@@ -55,5 +60,12 @@ public class Profile extends PlayerProfile {
         setDeaths(document.getInteger("deaths", 0));
         setKillstreak(document.getInteger("kill_streak", 0));
         setEconomy(document.getInteger("economy", 0));
+
+        String previousKitName = document.getString("previous_kit");
+        if (previousKitName != null) {
+            previousKit = EliteKits.getInstance().getKitManager().getKit(previousKitName);
+        } else {
+            previousKit = null;
+        }
     }
 }

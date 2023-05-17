@@ -13,9 +13,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class ProfileListener implements Listener {
 
@@ -53,6 +51,11 @@ public class ProfileListener implements Listener {
         plugin.getFileSetup().getStringList("WELCOME.MESSAGE").stream().map(CC::translate).forEach(player::sendMessage);
 
         plugin.getRegionManager().acquireSpawnProtection(player);
+
+        player.getInventory().setHelmet(null);
+        player.getInventory().setChestplate(null);
+        player.getInventory().setLeggings(null);
+        player.getInventory().setBoots(null);
 
         plugin.getItemManager().createLobbyloadout(player);
         profile.setPlayerState(PlayerState.LOBBY);

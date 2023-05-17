@@ -40,6 +40,10 @@ public class ElitekitsSidebar implements AssembleAdapter {
                 toReturn.add("&fDeaths:&b " + profile.getDeaths());
                 toReturn.add("&fCredits:&b " + profile.getKillstreak());
                 toReturn.add("");
+                toReturn.add(profile.getPreviousKit() != null
+                        ? CC.translate("&fPrevious Kit&7: &b" + profile.getPreviousKit().getName().toString())
+                        : CC.translate("&fPrevious Kit&7: &cnull"));
+                toReturn.add("");
                 toReturn.add(CC.translate("&7tech.quest"));
                 toReturn.add(CC.translate("&7&m" + Strings.repeat("-", 20)));
                 break;

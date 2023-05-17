@@ -19,7 +19,6 @@ public abstract class Kit {
     protected String description;
     protected ItemStack[] items;
     protected long cooldown;
-    protected Kit previousKit;
     protected String permission;
     protected List<PotionEffect> effects;
 
@@ -59,14 +58,6 @@ public abstract class Kit {
 
     public long getCooldown() {
         return cooldown;
-    }
-
-    public void setPreviousKit(Kit previousKit) {
-        this.previousKit = previousKit;
-    }
-
-    public Kit getPreviousKit() {
-        return previousKit;
     }
 
 }
