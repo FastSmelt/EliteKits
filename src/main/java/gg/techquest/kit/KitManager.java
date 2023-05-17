@@ -1,7 +1,9 @@
 package gg.techquest.kit;
 
 import gg.techquest.EliteKits;
-import gg.techquest.kit.defaults.PvP;
+import gg.techquest.kit.defaults.PvPKit;
+import gg.techquest.kit.defaults.SnailKit;
+import gg.techquest.kit.defaults.SwitcherKit;
 import gg.techquest.profile.Profile;
 import gg.techquest.profile.state.PlayerState;
 import gg.techquest.util.CC;
@@ -23,7 +25,9 @@ public class KitManager {
         this.plugin = plugin;
 
         kits = new HashMap<>();
-        kits.put("pvp", new PvP("My Kit", "Gives you a diamond sword and speed boost", null, 60000, "mykit.use"));
+        kits.put("pvp", new PvPKit("pvp", "", null, 60000, "pvp.use"));
+        kits.put("snail", new SnailKit("snail", "", null, 60000, "snail.use"));
+        kits.put("switcher", new SwitcherKit("switcher", "", null, 60000, "switcher.use"));
     }
 
     public void getDefaultKit(Player player) {

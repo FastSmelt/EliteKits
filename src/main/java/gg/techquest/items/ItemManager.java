@@ -35,35 +35,14 @@ public class ItemManager {
             .lore(CC.translate("&bPerks Menu"))
             .build());
 
-    private ItemBuilder playerProfile = ItemBuilder.from(new ItemBuilder(Material.SKULL_ITEM)
-            .name(CC.translate("&bYour Stats&7 (Right Click)"))
-            .lore(CC.translate("&bProfile Menu"))
-            .build());
-
-    private ItemBuilder settingsMenu = ItemBuilder.from(new ItemBuilder(Material.WATCH)
-            .name(CC.translate("&bSettings&7 (Right Click)"))
-            .lore(CC.translate("&bSettings Menu"))
-            .build());
-
-    private ItemBuilder cosmeticMenu = ItemBuilder.from(new ItemBuilder(Material.NETHER_STAR)
-            .name(CC.translate("&bCosmetics&7 (Right Click)"))
-            .lore(CC.translate("&bCosmetics Menu"))
-            .build());
-
     public void createLobbyloadout(Player player) {
         ItemStack selector = lobbySelector.build();
         ItemStack previous = previousKit.build();
         ItemStack perks = perksMenu.build();
-        ItemStack profile = playerProfile.build();
-        ItemStack settings = settingsMenu.build();
-        ItemStack cosmetics = cosmeticMenu.build();
 
         player.getInventory().setItem(0, selector);
         player.getInventory().setItem(1, previous);
-        player.getInventory().setItem(2, perks);
-        player.getInventory().setItem(4, profile);
-        player.getInventory().setItem(7, settings);
-        player.getInventory().setItem(8, cosmetics);
+        player.getInventory().setItem(8, perks);
     }
 
     public void eventLoadout() {}

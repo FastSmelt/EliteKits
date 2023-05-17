@@ -1,6 +1,7 @@
 package gg.techquest.listeners;
 
 import gg.techquest.EliteKits;
+import gg.techquest.kit.listener.KitListener;
 import gg.techquest.listeners.menu.KitSelectorListener;
 import gg.techquest.listeners.player.DeathListener;
 import gg.techquest.listeners.player.PlayerStateListener;
@@ -20,5 +21,6 @@ public class ListenerManager {
         pluginManager.registerEvents(new KitSelectorListener(), plugin);
         pluginManager.registerEvents(new ProfileListener(plugin), plugin);
         pluginManager.registerEvents(new DeathListener(plugin), plugin);
+        pluginManager.registerEvents(new KitListener(), plugin);
     }
 }

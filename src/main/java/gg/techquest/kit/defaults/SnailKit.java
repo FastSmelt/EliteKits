@@ -12,7 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 
-public class PvP extends Kit {
+public class SnailKit extends Kit {
     private PotionEffect speedEffect;
 
     private ItemStack helmet;
@@ -23,19 +23,22 @@ public class PvP extends Kit {
     private ItemStack diamondSword;
     private ItemStack soup;
 
-    public PvP(String name, String description, ItemStack[] items, long cooldown, String permission) {
+    public SnailKit(String name, String description, ItemStack[] items, long cooldown, String permission) {
         super(name, description, items, cooldown, permission);
 
-        this.speedEffect = new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1);
+        this.speedEffect = new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0);
         addEffect(speedEffect);
 
         this.helmet = new ItemStack(Material.IRON_HELMET);
         this.chestplate = new ItemStack(Material.IRON_CHESTPLATE);
         this.leggings = new ItemStack(Material.IRON_LEGGINGS);
-        this.boots = new ItemStack(Material.IRON_BOOTS);
+        this.boots = new ItemStack(Material.LEATHER_BOOTS);
+        this.boots.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
+        this.boots.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
 
-        this.diamondSword = new ItemStack(Material.DIAMOND_SWORD);
+        this.diamondSword = new ItemStack(Material.IRON_SWORD);
         this.diamondSword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
+        this.diamondSword.addEnchantment(Enchantment.DURABILITY, 3);
 
         this.soup = new ItemStack(Material.MUSHROOM_SOUP);
 
